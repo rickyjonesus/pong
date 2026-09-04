@@ -7,19 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03F3FC4E185653894578DD7D /* SafeAreaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F130C489375ACE187055BF8 /* SafeAreaProvider.swift */; };
 		0A36EB72904C764A7DE66C92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3FEB3B00C5DE37386AB640 /* Assets.xcassets */; };
 		48E6FE46D40FEC59B469E3E4 /* PongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6EC936AF1E39D7ABE4CFED /* PongApp.swift */; };
 		655127F4FFE9302A5DEA0278 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7490E332C31ACC30D8323F /* GameEngine.swift */; };
 		C3EBA702CC47C6AD717F3C98 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4CB42A08DA90AD56FB3A7 /* ContentView.swift */; };
+		DB351F8542554B012BD6632D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43A974C34C99878B86F318 /* NetworkManager.swift */; };
+		DDDE4EB8B379F53C7DE2150F /* DuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1BA06619BBD19F201C0681 /* DuelView.swift */; };
+		E41AD2816499EE21BE572AAF /* DuelEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736A37DE29E2A657CBD310CC /* DuelEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F130C489375ACE187055BF8 /* SafeAreaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaProvider.swift; sourceTree = "<group>"; };
 		4B6EC936AF1E39D7ABE4CFED /* PongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongApp.swift; sourceTree = "<group>"; };
+		736A37DE29E2A657CBD310CC /* DuelEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelEngine.swift; sourceTree = "<group>"; };
+		8F43A974C34C99878B86F318 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BA3FEB3B00C5DE37386AB640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA1900BAA06129AD0C990B9C /* Pong.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Pong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD4CB42A08DA90AD56FB3A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CD7490E332C31ACC30D8323F /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		CEECA1F02F021A2CDCC378BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF1BA06619BBD19F201C0681 /* DuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -44,9 +52,13 @@
 			children = (
 				BA3FEB3B00C5DE37386AB640 /* Assets.xcassets */,
 				CAD4CB42A08DA90AD56FB3A7 /* ContentView.swift */,
+				736A37DE29E2A657CBD310CC /* DuelEngine.swift */,
+				CF1BA06619BBD19F201C0681 /* DuelView.swift */,
 				CD7490E332C31ACC30D8323F /* GameEngine.swift */,
 				CEECA1F02F021A2CDCC378BE /* Info.plist */,
+				8F43A974C34C99878B86F318 /* NetworkManager.swift */,
 				4B6EC936AF1E39D7ABE4CFED /* PongApp.swift */,
+				3F130C489375ACE187055BF8 /* SafeAreaProvider.swift */,
 			);
 			path = Pong;
 			sourceTree = "<group>";
@@ -123,8 +135,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3EBA702CC47C6AD717F3C98 /* ContentView.swift in Sources */,
+				E41AD2816499EE21BE572AAF /* DuelEngine.swift in Sources */,
+				DDDE4EB8B379F53C7DE2150F /* DuelView.swift in Sources */,
 				655127F4FFE9302A5DEA0278 /* GameEngine.swift in Sources */,
+				DB351F8542554B012BD6632D /* NetworkManager.swift in Sources */,
 				48E6FE46D40FEC59B469E3E4 /* PongApp.swift in Sources */,
+				03F3FC4E185653894578DD7D /* SafeAreaProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,15 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Pong uses Bluetooth to connect directly to a nearby friend's iPhone for two-device matches.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_pong-duel._tcp</string>
+		<string>_pong-duel._udp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Pong uses your local network to find and connect to a nearby friend's iPhone for two-device matches.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UIRequiresFullScreen</key>

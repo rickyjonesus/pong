@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var engine = GameEngine()
+    @StateObject private var safeArea = SafeAreaProvider()
+    @State private var showNearbyDuel = false
 
     var body: some View {
         GeometryReader { geo in
@@ -11,16 +13,16 @@ struct ContentView: View {
                 CourtView(engine: engine)
                     .onAppear {
                         engine.configureCourt(geo.size)
-                        engine.configureSafeArea(leading: geo.safeAreaInsets.leading, trailing: geo.safeAreaInsets.trailing)
+                        safeArea.begin()
                     }
                     .onChange(of: geo.size) { newSize in engine.configureCourt(newSize) }
-                    .onChange(of: geo.safeAreaInsets) { insets in
-                        engine.configureSafeArea(leading: insets.leading, trailing: insets.trailing)
+                    .onReceive(safeArea.$insets) { insets in
+                        engine.configureSafeArea(leading: insets.left, trailing: insets.right)
                     }
 
                 switch engine.phase {
                 case .menu:
-                    MenuOverlay(engine: engine)
+                    MenuOverlay(engine: engine, showNearbyDuel: $showNearbyDuel)
                 case .serving:
                     ServeOverlay(engine: engine)
                 case .gameOver:
@@ -32,6 +34,9 @@ struct ContentView: View {
         }
         .ignoresSafeArea()
         .background(Color.black)
+        .fullScreenCover(isPresented: $showNearbyDuel) {
+            DuelView()
+        }
     }
 }
 
@@ -136,6 +141,7 @@ private struct ScoreBar: View {
 
 private struct MenuOverlay: View {
     @ObservedObject var engine: GameEngine
+    @Binding var showNearbyDuel: Bool
 
     var body: some View {
         VStack(spacing: 28) {
@@ -155,9 +161,14 @@ private struct MenuOverlay: View {
                 } label: {
                     menuLabel("2 PLAYER  (PASS & PLAY)")
                 }
+                Button {
+                    showNearbyDuel = true
+                } label: {
+                    menuLabel("PLAY NEARBY  (2 DEVICES)")
+                }
             }
 
-            Text("Drag on your half to move your paddle\nFirst to \(GameEngine.winningScore) wins")
+            Text("Drag on your half to move your paddle\nFirst to \(GameEngine.winningScore) wins\n\nPlay Nearby: hold two iPhones side by side\nand rally the ball across both screens")
                 .multilineTextAlignment(.center)
                 .font(.system(size: 15, weight: .medium, design: .monospaced))
                 .foregroundStyle(.white.opacity(0.5))

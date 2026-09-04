@@ -25,6 +25,11 @@ targets:
         UISupportedInterfaceOrientations~ipad:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
+        NSLocalNetworkUsageDescription: "Pong uses your local network to find and connect to a nearby friend's iPhone for two-device matches."
+        NSBonjourServices:
+          - _pong-duel._tcp
+          - _pong-duel._udp
+        NSBluetoothAlwaysUsageDescription: "Pong uses Bluetooth to connect directly to a nearby friend's iPhone for two-device matches."
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.rickyjonesus.pong
