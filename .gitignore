@@ -1,0 +1,23 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods / Carthage (unused here, but harmless to ignore)
+Pods/
+Carthage/Build/
+
+# macOS
+.DS_Store
+
+# xcodegen output stays committed since project.yml is the source of truth,
+# but user-specific project settings should not be tracked.
+Pong.xcodeproj/project.xcworkspace/xcuserdata/
+Pong.xcodeproj/xcuserdata/
