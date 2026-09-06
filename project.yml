@@ -1,6 +1,6 @@
 name: Pong
 options:
-  bundleIdPrefix: com.rickyjonesus
+  bundleIdPrefix: com.white-oak-ai
   deploymentTarget:
     iOS: "16.0"
   createIntermediateGroups: true
@@ -32,7 +32,7 @@ targets:
         NSBluetoothAlwaysUsageDescription: "Pong uses Bluetooth to connect directly to a nearby friend's iPhone for two-device matches."
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.rickyjonesus.pong
+        PRODUCT_BUNDLE_IDENTIFIER: com.white-oak-ai.pong
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1,2"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
