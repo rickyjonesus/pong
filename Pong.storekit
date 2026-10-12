@@ -93,6 +93,96 @@
       "type": "NonConsumable"
     },
     {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000300",
+      "localizations": [
+        {
+          "description": "The Amber look for your court.",
+          "displayName": "Amber Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.amber",
+      "referenceName": "Amber Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000301",
+      "localizations": [
+        {
+          "description": "The Blueprint look for your court.",
+          "displayName": "Blueprint Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.blueprint",
+      "referenceName": "Blueprint Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000302",
+      "localizations": [
+        {
+          "description": "The Lava look for your court.",
+          "displayName": "Lava Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.lava",
+      "referenceName": "Lava Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000303",
+      "localizations": [
+        {
+          "description": "The Forest look for your court.",
+          "displayName": "Forest Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.forest",
+      "referenceName": "Forest Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000304",
+      "localizations": [
+        {
+          "description": "The Candy look for your court.",
+          "displayName": "Candy Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.candy",
+      "referenceName": "Candy Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000305",
+      "localizations": [
+        {
+          "description": "The Cyberpunk look for your court.",
+          "displayName": "Cyberpunk Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.cyberpunk",
+      "referenceName": "Cyberpunk Theme",
+      "type": "NonConsumable"
+    },
+    {
       "displayPrice": "2.99",
       "familyShareable": false,
       "internalID": "6740000200",

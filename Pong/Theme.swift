@@ -67,7 +67,46 @@ extension Theme {
         net: Color(hex: 0x1B1B1B).opacity(0.3), text: Color(hex: 0x1B1B1B), accent: Color(hex: 0x1B1B1B),
         glow: false, productID: productPrefix + "paper")
 
-    static let all: [Theme] = [.classic, .neon, .terminal, .sunset, .ocean, .gold, .paper]
+    static let amber = Theme(
+        id: "amber", name: "Amber",
+        background: Color(hex: 0x1A0F00), paddle: Color(hex: 0xFFB000), ball: Color(hex: 0xFFB000),
+        net: Color(hex: 0xFFB000).opacity(0.35), text: Color(hex: 0xFFB000), accent: Color(hex: 0xFFB000),
+        glow: true, productID: productPrefix + "amber")
+
+    static let blueprint = Theme(
+        id: "blueprint", name: "Blueprint",
+        background: Color(hex: 0x0B3D91), paddle: .white, ball: Color(hex: 0xFFE066),
+        net: Color.white.opacity(0.4), text: .white, accent: .white,
+        glow: false, productID: productPrefix + "blueprint")
+
+    static let lava = Theme(
+        id: "lava", name: "Lava",
+        background: Color(hex: 0x1C0500), paddle: Color(hex: 0xFF4500), ball: Color(hex: 0xFFD000),
+        net: Color(hex: 0xFF4500).opacity(0.4), text: Color(hex: 0xFFB59A), accent: Color(hex: 0xFF4500),
+        glow: true, productID: productPrefix + "lava")
+
+    static let forest = Theme(
+        id: "forest", name: "Forest",
+        background: Color(hex: 0x0F2417), paddle: Color(hex: 0x8BC34A), ball: Color(hex: 0xF5E6B3),
+        net: Color(hex: 0x8BC34A).opacity(0.35), text: Color(hex: 0xDDEFC8), accent: Color(hex: 0x8BC34A),
+        glow: false, productID: productPrefix + "forest")
+
+    static let candy = Theme(
+        id: "candy", name: "Candy",
+        background: Color(hex: 0xFFE3F1), paddle: Color(hex: 0xFF5FA2), ball: Color(hex: 0x5BC8F5),
+        net: Color(hex: 0xFF5FA2).opacity(0.35), text: Color(hex: 0x8A1F57), accent: Color(hex: 0xFF5FA2),
+        glow: false, productID: productPrefix + "candy")
+
+    static let cyberpunk = Theme(
+        id: "cyberpunk", name: "Cyberpunk",
+        background: Color(hex: 0x120458), paddle: Color(hex: 0xFFF200), ball: Color(hex: 0xFF2A6D),
+        net: Color(hex: 0x05D9E8).opacity(0.5), text: Color(hex: 0x05D9E8), accent: Color(hex: 0xFFF200),
+        glow: true, productID: productPrefix + "cyberpunk")
+
+    static let all: [Theme] = [
+        .classic, .neon, .terminal, .sunset, .ocean, .gold, .paper,
+        .amber, .blueprint, .lava, .forest, .candy, .cyberpunk,
+    ]
 
     static var paidProductIDs: [String] { all.compactMap(\.productID) + [bundleProductID] }
 }
