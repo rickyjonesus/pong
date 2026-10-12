@@ -18,6 +18,8 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Pong uses Bluetooth to connect directly to a nearby friend's iPhone for two-device matches.</string>
 	<key>NSBonjourServices</key>
