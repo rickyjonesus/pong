@@ -4,11 +4,12 @@ struct DuelView: View {
     @StateObject private var engine = DuelEngine()
     @StateObject private var safeArea = SafeAreaProvider()
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.theme) private var theme
 
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                Color.black.ignoresSafeArea()
+                theme.background.ignoresSafeArea()
 
                 if engine.phase == .connecting || engine.phase == .connectionLost {
                     ConnectingOverlay(engine: engine, dismiss: dismiss)
@@ -29,7 +30,7 @@ struct DuelView: View {
             }
         }
         .ignoresSafeArea()
-        .background(Color.black)
+        .background(theme.background)
         .onAppear {
             engine.start()
             safeArea.begin()
@@ -45,30 +46,31 @@ struct DuelView: View {
 
 private struct ConnectingOverlay: View {
     @ObservedObject var engine: DuelEngine
+    @Environment(\.theme) private var theme
     let dismiss: DismissAction
 
     var body: some View {
         VStack(spacing: 24) {
             Text("PONG")
                 .font(.system(size: 48, weight: .heavy, design: .monospaced))
-                .foregroundStyle(.white)
+                .foregroundStyle(theme.text)
                 .kerning(6)
 
             if engine.phase == .connectionLost {
                 Text("CONNECTION LOST")
                     .font(.system(size: 18, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(theme.text)
                 Button { engine.start() } label: { pillLabel("SEARCH AGAIN") }
             } else {
                 ProgressView()
-                    .tint(.white)
+                    .tint(theme.text)
                 Text(engine.connectionLabel)
                     .font(.system(size: 15, weight: .medium, design: .monospaced))
-                    .foregroundStyle(.white.opacity(0.7))
+                    .foregroundStyle(theme.text.opacity(0.7))
                     .multilineTextAlignment(.center)
                 Text("Bring both phones close together.\nMake sure Wi-Fi and Bluetooth are on,\nand Pong is open on both.")
                     .font(.system(size: 12, weight: .regular, design: .monospaced))
-                    .foregroundStyle(.white.opacity(0.4))
+                    .foregroundStyle(theme.text.opacity(0.4))
                     .multilineTextAlignment(.center)
             }
 
@@ -80,11 +82,11 @@ private struct ConnectingOverlay: View {
     private func pillLabel(_ text: String, filled: Bool = true) -> some View {
         Text(text)
             .font(.system(size: 16, weight: .bold, design: .monospaced))
-            .foregroundStyle(filled ? .black : .white)
+            .foregroundStyle(filled ? theme.background : theme.text)
             .padding(.vertical, 12)
             .frame(width: 240)
-            .background(filled ? Color.white : Color.clear)
-            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white, lineWidth: filled ? 0 : 2))
+            .background(filled ? theme.accent : Color.clear)
+            .overlay(RoundedRectangle(cornerRadius: 8).stroke(theme.accent, lineWidth: filled ? 0 : 2))
             .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
@@ -93,6 +95,7 @@ private struct ConnectingOverlay: View {
 
 private struct DuelCourtView: View {
     @ObservedObject var engine: DuelEngine
+    @Environment(\.theme) private var theme
 
     var body: some View {
         TimelineView(.animation(paused: engine.phase != .playing)) { context in
@@ -127,15 +130,15 @@ private struct DuelCourtView: View {
         case .serving:
             Text("TAP TO SERVE")
                 .font(.system(size: 22, weight: .bold, design: .monospaced))
-                .foregroundStyle(.white)
+                .foregroundStyle(theme.text)
                 .padding(16)
-                .background(.black.opacity(0.55))
+                .background(theme.background.opacity(0.7))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .allowsHitTesting(false)
         case .waitingForBall:
             Text("OPPONENT'S SERVE…")
                 .font(.system(size: 16, weight: .bold, design: .monospaced))
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(theme.text.opacity(0.5))
                 .allowsHitTesting(false)
         default:
             EmptyView()
@@ -147,33 +150,34 @@ private struct DuelCourtView: View {
         // so it's clear which side the ball disappears/appears from.
         let x: CGFloat = engine.isLeftSide ? size.width - 3 : 0
         let rect = CGRect(x: x, y: 0, width: 3, height: size.height)
-        ctx.fill(Path(rect), with: .color(.white.opacity(0.2)))
+        ctx.fill(Path(rect), with: .color(theme.net.opacity(0.6)))
     }
 
     private func drawPaddle(ctx: inout GraphicsContext, size: CGSize) {
         let rect = CGRect(x: engine.paddleX - engine.paddleWidth / 2, y: engine.paddleY - engine.paddleHeight / 2,
                            width: engine.paddleWidth, height: engine.paddleHeight)
-        ctx.fill(Path(roundedRect: rect, cornerRadius: 3), with: .color(.white))
+        ctx.fill(Path(roundedRect: rect, cornerRadius: 3), color: theme.paddle, theme: theme)
     }
 
     private func drawBall(ctx: inout GraphicsContext) {
         let rect = CGRect(x: engine.ballPos.x - engine.ballSize / 2, y: engine.ballPos.y - engine.ballSize / 2,
                            width: engine.ballSize, height: engine.ballSize)
-        ctx.fill(Path(ellipseIn: rect), with: .color(.white))
+        ctx.fill(Path(ellipseIn: rect), color: theme.ball, theme: theme)
     }
 }
 
 private struct DuelScoreBar: View {
     @ObservedObject var engine: DuelEngine
+    @Environment(\.theme) private var theme
 
     var body: some View {
         HStack(spacing: 32) {
             scoreBlock(label: "YOU", value: engine.localScore)
-            Text(":").foregroundStyle(.white.opacity(0.3))
+            Text(":").foregroundStyle(theme.text.opacity(0.3))
             scoreBlock(label: "THEM", value: engine.opponentScore)
         }
         .font(.system(size: 32, weight: .bold, design: .monospaced))
-        .foregroundStyle(.white)
+        .foregroundStyle(theme.text)
     }
 
     private func scoreBlock(label: String, value: Int) -> some View {
@@ -181,7 +185,7 @@ private struct DuelScoreBar: View {
             Text("\(value)")
             Text(label)
                 .font(.system(size: 11, weight: .medium, design: .monospaced))
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(theme.text.opacity(0.5))
         }
     }
 }
@@ -190,40 +194,41 @@ private struct DuelScoreBar: View {
 
 private struct DuelGameOverOverlay: View {
     @ObservedObject var engine: DuelEngine
+    @Environment(\.theme) private var theme
     let dismiss: DismissAction
 
     var body: some View {
         VStack(spacing: 24) {
             Text(engine.winnerIsMe == true ? "YOU WIN" : "YOU LOSE")
                 .font(.system(size: 40, weight: .heavy, design: .monospaced))
-                .foregroundStyle(.white)
+                .foregroundStyle(theme.text)
 
             Text("\(engine.localScore) — \(engine.opponentScore)")
                 .font(.system(size: 22, weight: .bold, design: .monospaced))
-                .foregroundStyle(.white.opacity(0.7))
+                .foregroundStyle(theme.text.opacity(0.7))
 
             HStack(spacing: 16) {
                 Button { engine.requestRematch() } label: {
                     Text("REMATCH")
                         .font(.system(size: 16, weight: .bold, design: .monospaced))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(theme.background)
                         .padding(.vertical, 12)
                         .frame(width: 150)
-                        .background(Color.white)
+                        .background(theme.accent)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 Button { dismiss() } label: {
                     Text("EXIT")
                         .font(.system(size: 16, weight: .bold, design: .monospaced))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(theme.text)
                         .padding(.vertical, 12)
                         .frame(width: 150)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white, lineWidth: 2))
+                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(theme.accent, lineWidth: 2))
                 }
             }
         }
         .padding(40)
-        .background(Color.black.opacity(0.001))
+        .background(theme.background.opacity(0.001))
     }
 }
 

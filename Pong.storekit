@@ -1,0 +1,117 @@
+{
+  "identifier": "7C0D2B5E",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000100",
+      "localizations": [
+        {
+          "description": "The Neon look for your court.",
+          "displayName": "Neon Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.neon",
+      "referenceName": "Neon Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000101",
+      "localizations": [
+        {
+          "description": "The Terminal look for your court.",
+          "displayName": "Terminal Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.terminal",
+      "referenceName": "Terminal Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000102",
+      "localizations": [
+        {
+          "description": "The Sunset look for your court.",
+          "displayName": "Sunset Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.sunset",
+      "referenceName": "Sunset Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000103",
+      "localizations": [
+        {
+          "description": "The Ocean look for your court.",
+          "displayName": "Ocean Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.ocean",
+      "referenceName": "Ocean Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000104",
+      "localizations": [
+        {
+          "description": "The Gold look for your court.",
+          "displayName": "Gold Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.gold",
+      "referenceName": "Gold Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6740000105",
+      "localizations": [
+        {
+          "description": "The Paper look for your court.",
+          "displayName": "Paper Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.paper",
+      "referenceName": "Paper Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "6740000200",
+      "localizations": [
+        {
+          "description": "Unlock every theme, including future ones.",
+          "displayName": "All Themes",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.white-oak-ai.pong.theme.all",
+      "referenceName": "All Themes",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {},
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

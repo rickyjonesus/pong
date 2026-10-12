@@ -4,11 +4,13 @@ struct ContentView: View {
     @StateObject private var engine = GameEngine()
     @StateObject private var safeArea = SafeAreaProvider()
     @State private var showNearbyDuel = false
+    @State private var showThemes = false
+    @Environment(\.theme) private var theme
 
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                Color.black.ignoresSafeArea()
+                theme.background.ignoresSafeArea()
 
                 CourtView(engine: engine)
                     .onAppear {
@@ -22,7 +24,7 @@ struct ContentView: View {
 
                 switch engine.phase {
                 case .menu:
-                    MenuOverlay(engine: engine, showNearbyDuel: $showNearbyDuel)
+                    MenuOverlay(engine: engine, showNearbyDuel: $showNearbyDuel, showThemes: $showThemes)
                 case .serving:
                     ServeOverlay(engine: engine)
                 case .gameOver:
@@ -33,9 +35,12 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea()
-        .background(Color.black)
+        .background(theme.background)
         .fullScreenCover(isPresented: $showNearbyDuel) {
             DuelView()
+        }
+        .fullScreenCover(isPresented: $showThemes) {
+            ThemePickerView()
         }
     }
 }
@@ -44,6 +49,7 @@ struct ContentView: View {
 
 private struct CourtView: View {
     @ObservedObject var engine: GameEngine
+    @Environment(\.theme) private var theme
 
     var body: some View {
         TimelineView(.animation(paused: engine.phase != .playing)) { context in
@@ -93,26 +99,27 @@ private struct CourtView: View {
             path.addRect(CGRect(x: size.width / 2 - 2, y: y, width: 4, height: dashHeight))
             y += dashHeight + gap
         }
-        ctx.fill(path, with: .color(.white.opacity(0.4)))
+        ctx.fill(path, with: .color(theme.net))
     }
 
     private func drawPaddle(ctx: inout GraphicsContext, x: CGFloat, y: CGFloat, engine: GameEngine) {
         let rect = CGRect(x: x - engine.paddleWidth / 2, y: y - engine.paddleHeight / 2,
                            width: engine.paddleWidth, height: engine.paddleHeight)
         let path = Path(roundedRect: rect, cornerRadius: 3)
-        ctx.fill(path, with: .color(.white))
+        ctx.fill(path, color: theme.paddle, theme: theme)
     }
 
     private func drawBall(ctx: inout GraphicsContext, engine: GameEngine) {
         let rect = CGRect(x: engine.ballPos.x - engine.ballSize / 2, y: engine.ballPos.y - engine.ballSize / 2,
                            width: engine.ballSize, height: engine.ballSize)
         let path = Path(ellipseIn: rect)
-        ctx.fill(path, with: .color(.white))
+        ctx.fill(path, color: theme.ball, theme: theme)
     }
 }
 
 private struct ScoreBar: View {
     @ObservedObject var engine: GameEngine
+    @Environment(\.theme) private var theme
 
     var body: some View {
         HStack {
@@ -124,7 +131,7 @@ private struct ScoreBar: View {
                 engine.backToMenu()
             } label: {
                 Image(systemName: "pause.fill")
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(theme.text.opacity(0.6))
                     .padding(10)
             }
             Spacer()
@@ -133,7 +140,7 @@ private struct ScoreBar: View {
             Spacer()
         }
         .font(.system(size: 44, weight: .bold, design: .monospaced))
-        .foregroundStyle(.white)
+        .foregroundStyle(theme.text)
     }
 }
 
@@ -142,12 +149,14 @@ private struct ScoreBar: View {
 private struct MenuOverlay: View {
     @ObservedObject var engine: GameEngine
     @Binding var showNearbyDuel: Bool
+    @Binding var showThemes: Bool
+    @Environment(\.theme) private var theme
 
     var body: some View {
         VStack(spacing: 28) {
             Text("PONG")
                 .font(.system(size: 72, weight: .heavy, design: .monospaced))
-                .foregroundStyle(.white)
+                .foregroundStyle(theme.text)
                 .kerning(8)
 
             VStack(spacing: 16) {
@@ -166,42 +175,53 @@ private struct MenuOverlay: View {
                 } label: {
                     menuLabel("PLAY NEARBY  (2 DEVICES)")
                 }
+                Button {
+                    showThemes = true
+                } label: {
+                    Text("THEMES")
+                        .font(.system(size: 20, weight: .bold, design: .monospaced))
+                        .foregroundStyle(theme.text)
+                        .padding(.vertical, 12)
+                        .frame(width: 340)
+                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(theme.accent, lineWidth: 2))
+                }
             }
 
             Text("Drag on your half to move your paddle\nFirst to \(GameEngine.winningScore) wins\n\nPlay Nearby: hold two iPhones side by side\nand rally the ball across both screens")
                 .multilineTextAlignment(.center)
                 .font(.system(size: 15, weight: .medium, design: .monospaced))
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(theme.text.opacity(0.5))
         }
         .padding(40)
-        .background(Color.black.opacity(0.001)) // capture taps but stay invisible
+        .background(theme.background.opacity(0.001)) // capture taps but stay invisible
     }
 
     private func menuLabel(_ text: String) -> some View {
         Text(text)
             .font(.system(size: 20, weight: .bold, design: .monospaced))
-            .foregroundStyle(.black)
+            .foregroundStyle(theme.background)
             .padding(.vertical, 14)
             .frame(width: 340)
-            .background(Color.white)
+            .background(theme.accent)
             .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
 
 private struct ServeOverlay: View {
     @ObservedObject var engine: GameEngine
+    @Environment(\.theme) private var theme
 
     var body: some View {
         VStack(spacing: 14) {
             Text("TAP TO SERVE")
                 .font(.system(size: 26, weight: .bold, design: .monospaced))
-                .foregroundStyle(.white)
+                .foregroundStyle(theme.text)
             Text(engine.twoPlayerMode ? "Player 1 (left) vs Player 2 (right)" : "You are the right paddle")
                 .font(.system(size: 14, weight: .medium, design: .monospaced))
-                .foregroundStyle(.white.opacity(0.6))
+                .foregroundStyle(theme.text.opacity(0.6))
         }
         .padding(20)
-        .background(.black.opacity(0.55))
+        .background(theme.background.opacity(0.7))
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .allowsHitTesting(false)
     }
@@ -209,17 +229,18 @@ private struct ServeOverlay: View {
 
 private struct GameOverOverlay: View {
     @ObservedObject var engine: GameEngine
+    @Environment(\.theme) private var theme
 
     var body: some View {
         VStack(spacing: 24) {
             Text("\(engine.winner ?? "") WINS")
                 .font(.system(size: 40, weight: .heavy, design: .monospaced))
-                .foregroundStyle(.white)
+                .foregroundStyle(theme.text)
                 .multilineTextAlignment(.center)
 
             Text("\(engine.leftScore) — \(engine.rightScore)")
                 .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .foregroundStyle(.white.opacity(0.7))
+                .foregroundStyle(theme.text.opacity(0.7))
 
             HStack(spacing: 16) {
                 Button {
@@ -227,10 +248,10 @@ private struct GameOverOverlay: View {
                 } label: {
                     Text("REMATCH")
                         .font(.system(size: 17, weight: .bold, design: .monospaced))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(theme.background)
                         .padding(.vertical, 12)
                         .frame(width: 160)
-                        .background(Color.white)
+                        .background(theme.accent)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 Button {
@@ -238,10 +259,10 @@ private struct GameOverOverlay: View {
                 } label: {
                     Text("MENU")
                         .font(.system(size: 17, weight: .bold, design: .monospaced))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(theme.text)
                         .padding(.vertical, 12)
                         .frame(width: 160)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white, lineWidth: 2))
+                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(theme.accent, lineWidth: 2))
                 }
             }
         }
