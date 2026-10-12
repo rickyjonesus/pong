@@ -15,6 +15,9 @@
 		DB351F8542554B012BD6632D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43A974C34C99878B86F318 /* NetworkManager.swift */; };
 		DDDE4EB8B379F53C7DE2150F /* DuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1BA06619BBD19F201C0681 /* DuelView.swift */; };
 		E41AD2816499EE21BE572AAF /* DuelEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736A37DE29E2A657CBD310CC /* DuelEngine.swift */; };
+		A1B2C3D4E5F60718293A4B61 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B51 /* Theme.swift */; };
+		A1B2C3D4E5F60718293A4B62 /* ThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B52 /* ThemeStore.swift */; };
+		A1B2C3D4E5F60718293A4B63 /* ThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B53 /* ThemePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		CD7490E332C31ACC30D8323F /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		CEECA1F02F021A2CDCC378BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF1BA06619BBD19F201C0681 /* DuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B51 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B52 /* ThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStore.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B53 /* ThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -59,6 +65,9 @@
 				8F43A974C34C99878B86F318 /* NetworkManager.swift */,
 				4B6EC936AF1E39D7ABE4CFED /* PongApp.swift */,
 				3F130C489375ACE187055BF8 /* SafeAreaProvider.swift */,
+				A1B2C3D4E5F60718293A4B53 /* ThemePickerView.swift */,
+				A1B2C3D4E5F60718293A4B52 /* ThemeStore.swift */,
+				A1B2C3D4E5F60718293A4B51 /* Theme.swift */,
 			);
 			path = Pong;
 			sourceTree = "<group>";
@@ -141,6 +150,9 @@
 				DB351F8542554B012BD6632D /* NetworkManager.swift in Sources */,
 				48E6FE46D40FEC59B469E3E4 /* PongApp.swift in Sources */,
 				03F3FC4E185653894578DD7D /* SafeAreaProvider.swift in Sources */,
+				A1B2C3D4E5F60718293A4B63 /* ThemePickerView.swift in Sources */,
+				A1B2C3D4E5F60718293A4B62 /* ThemeStore.swift in Sources */,
+				A1B2C3D4E5F60718293A4B61 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
